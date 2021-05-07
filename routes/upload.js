@@ -39,7 +39,7 @@ module.exports = (db) => {
         Number(body.price),
         Number(body.stock),
         req.session.user_id,
-        name
+        name + ".png"
       ];
       //console.log(values);
       db.query(query, values)
