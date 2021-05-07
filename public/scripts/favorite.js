@@ -51,7 +51,8 @@ $(document).ready(function () {
     }
     
   });
-
+  
+}); //document ready closes here.
   // $('.unlikeproduct').on('click',function(e){
   //     e.preventDefault();
   //     //we need to get the product id
@@ -97,4 +98,3 @@ $(document).ready(function () {
 
   //         $.post(url)
   //     });
-}); //document ready closes here.

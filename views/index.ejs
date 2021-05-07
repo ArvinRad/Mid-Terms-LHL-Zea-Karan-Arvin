@@ -1,100 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>MidZak</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
-    <!-- <link
-      rel="stylesheet"
-      href="/styles/responsive_design.css"
-      type="text/css"
-    /> -->
-    <!-- <link rel="stylesheet" href="/styles/layout_listing.css" type="text/css" /> -->
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <meta charset="utf-8" />
+<!-- Head -->
+<%- include('partials/head') %>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/favorite.js"></script>
-  </head>
-
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Le styles -->
-    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-
-      @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-    </style>
-    <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet" />
-  </head>
-
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <button
-            type="button"
-            class="btn btn-navbar"
-            data-toggle="collapse"
-            data-target=".nav-collapse"
-          >
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">MidZak</a>
-          <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-            <!-- This Part can be styled with Navbar show/hid function -->
-              <!-- <form href="#myLoginnav" class="form-inline" action="/login" method="POST">
-                <input class="form-control" type="text" name="email" placeholder="Your email" style="width: 300px; margin: 3em">
-                <input class="form-control" type="text" name="password" placeholder="Your Password (> 4 characters)" style="width: 300px; margin: 1em">
-                <select class="form-control" type="text" name="userType">
-                  <option>user</option>
-                  <option>admin</option>
-                </select>
-                <button type="submit" class="btn btn-primary" style="margin: 1em">Log In</button>
-              </form> -->
-              <!-- Logged in as <a href="#" class="navbar-link">Username</a> -->
-              <a href="/login" role="button" data-toggle="popover" class="btn" data-toggle="modal">Login / Signup</a>
-            </p>
-            <ul class="nav">
-              <li class="active"><a href="/upload">Sell</a></li>
-              <li><a href="#about">Favourites</a></li>
-              <li><a href="#contact">Inbox</a></li>
-            </ul>
-            <form action="/products/search" method="POST" class="navbar-search pull-left">
-              <input type="text" name="search" class="search-query" placeholder="Search">
-              <button type="submit" class="btn btn-light">Submit</button>
-            </form>
-
-          </div>
-          <!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+ <!-- Nav -->
+  <%- include('partials/nav') %>
 
     <div class="container-fluid">
+      <!-- SIDE BAR MENU START -->
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
@@ -116,8 +30,9 @@
               <li><a href="#">Accessories</a></li>
             </ul>
           </div>
-          <!--/.well -->
         </div>
+        <!-- SIDE BAR MENU END-->
+
         <!--/span-->
         <div class="span9">
           <div class="hero-unit">
@@ -128,85 +43,59 @@
               easily contact sellers.
             </p>
             <p>
-              <a href="/upload" class="btn btn-primary btn-large">Sell Now &raquo;</a>
+              <a href="/upload" class="btn btn-primary btn-large"
+                >Sell Now &raquo;</a
+              >
             </p>
           </div>
+          <p>
+            Sort Price By:
+            <a class="btn btn-small" href="/?price=true" type="button"
+              >High to low</a
+            >
+            <a class="btn btn-small" href="/" type="button">Low to high</a>
+          </p>
 
-          <div class="row-fluid">
-            <ul class="thumbnails">
+          <div class="container" style="display: inline-block">
+            <ul class="thumbnails dark-magic">
               <% for(let ele of data ) { %>
 
-              <li class="span4">
+              <li class="span3">
                 <div class="thumbnail">
-                  <img src="uploads/<%= ele.thumbnail %>.png" />
                   <div class="caption">
-                    <h3><%= ele.name %></h3>
+                    <img src="uploads/<%= ele.thumbnail %>" style="width:90%"/>
+                    <h4><%= ele.name %> - $<%= ele.price %></h4>
                     <p>
+                      <a
+                        class="btn btn-primary"
+                        href="/products/<%= ele.id %>"
+                        role="button"
+                        >View product</a
+                      >
 
-                      <a class="btn btn-primary" href="/products/<%= ele.id %>" role="button">View product</a>
-
-                      <button
-              type="button"
-              class="fas fa-heart favBtn btn"
-              data-productid="<%=ele.id%>"
-              data-fav_prod_id="<%=ele.fav_prod_id %>"
-              data-user_id="<%=ele.user_id %>"
-            ></button>
+                      <a
+                        class="btn favBtn"
+                        role="button"
+                        data-productid="<%=ele.id%>"
+                        data-fav_prod_id="<%=ele.fav_prod_id %>"
+                        data-user_id="<%=ele.user_id %>"
+                      >
+                        <span class="fas fa-heart"></span>
+                      </a>
                     </p>
-                  </div>
                 </div>
               </li>
 
               <% } %>
-
-
             </ul>
+          </div>
           </div>
         </div>
         <!--/span-->
       </div>
       <!--/row-->
 
-      <hr />
+    <%- include('partials/login-modal') %>
 
-      <footer>
-        <p>&copy; MidZak LH 2021</p>
-      </footer>
-    </div>
-    <!--/.fluid-container-->
-
-    <!-- Login / Signup Modal -->
-    <div
-      id="myModal"
-      class="modal hide fade"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-hidden="true"
-        >
-          ×
-        </button>
-        <h3 id="myModalLabel">Modal header</h3>
-      </div>
-      <div class="modal-body">
-        <p>One fine body…</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">
-          Close
-        </button>
-        <button class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
   </body>
 </html>

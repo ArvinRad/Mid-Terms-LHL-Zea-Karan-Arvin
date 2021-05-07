@@ -1,17 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>MidZak</title>
 
+    <!-- Head -->
+    <%- include('partials/head') %>
+
+    <!-- Nav -->
+    <%- include('partials/nav') %>
+
+    <!-- Login-modal -->
+    <%- include('partials/login-modal') %>
+
+    <!-- Product -->
+      <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span6">
+              <div style="margin: 100px">
+                <img src="/uploads/<%= product.thumbnail %>" />
+              </div>
+            </div>
+            <div class="span3" style="margin-top: 100px;">
+              <span>
+                <h1 id="product-name"><%= product.name %></h1>
+              </span>
+
+              <h2 id="product-price" class="price">$<%= product.price %></h2>
+              <label for="description" class="fcf-label">Description:</label>
+              <p id="product-description"><%= product.description %></p>
+              <label for="stock" class="fcf-label">Stock:</label>
+              <p id="product-description"><%= product.stock %></p>
+              <form action="/products/<%= product.id %>/messages" method="GET">
+              <p><button type="submit">Contact Seller</button></p>
+            </div>
+          </div>
+
+
+          <!-- KARAN -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/product.css" type="text/css" />
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <meta charset="utf-8" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-
+    <script type="text/javascript" src="/scripts/product-page.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Le styles -->
@@ -55,17 +88,18 @@
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <!-- Logged in as <a href="#" class="navbar-link">Username</a> -->
-              <a href="/login" role="button" class="btn" data-toggle="modal">Login / Signup</a>
+              <a href="#myModal" role="button" class="btn" data-toggle="modal"
+                >Login / Signup</a
+              >
             </p>
             <ul class="nav">
               <li class="active"><a href="/upload">Sell</a></li>
               <li><a href="#about">Favourites</a></li>
               <li><a href="#contact">Inbox</a></li>
             </ul>
-            <form action="/products/search" method="POST" role="search" class="navbar-search pull-left">
-              <input type="text" class="search-query" placeholder="Search">
+            <form class="navbar-search pull-left">
+              <input type="text" class="search-query" placeholder="Search" />
             </form>
-
           </div>
           <!--/.nav-collapse -->
         </div>
@@ -100,7 +134,13 @@
         <!--/span Product Specific-->
 
         <div class="card">
-          <img class="product-image" id="main-product-image" src="uploads/<%= product.thumbnail %>.png" alt="Denim Jeans" style="width:100%">
+          <img
+            class="product-image"
+            id="main-product-image"
+            src="jeans3.jpg"
+            alt="Denim Jeans"
+            style="width: 100%"
+          />
           <h1 id="product-name"><%= product.name %></h1>
 
           <p id="product-price" class="price">$<%= product.price %></p>
@@ -108,9 +148,63 @@
           <p id="product-description"><%= product.description %></p>
           <label for="stock" class="fcf-label">Stock:</label>
           <p id="product-description"><%= product.stock %></p>
-          <form action="/products/<%= product.id %>/messages" method="GET">
-          <p><button type="submit">Contact Seller</button></p>
-        </form>
+          <button type="button" id="btnDelte" data-productid="<%= product.id %>">Delete</button>
+          <p></p>
+            <p><button type="button" id="btnSeller">Contact Seller</button></p>
+          <!-- </form> -->
+          <link href="contact-form.css" rel="stylesheet" />
+
+
+
+
+
+          <div class="fcf-body" >
+            <div id="fcf-form">
+              <!-- <h3 class="fcf-h3">Contact Seller</h3> -->
+              <button type="button" id="btnHide">Hide Message Form</button>
+              <form
+                id="fcf-form-id"
+                class="fcf-form-class"
+                > <div id="showMessages">
+
+                </div>
+                <div class="fcf-form-group" >
+                  <div class="fcf-input-group">
+                  <div id="noValid">
+                    <p>please enter text below</p>
+                  </div>
+                    <textarea
+                    id="Message"
+                    name="Message"
+                    class="fcf-form-control"
+                    rows="6"
+                    maxlength="3000"
+                    required
+                    placeholder="Your message"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="fcf-form-group">
+                  <input type="hidden" id="product_id"
+                  value="<%= product.id %>" name="product_id" >
+
+                </input>
+                <button
+                type="button"
+                id="fcf-button"
+                class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block"
+                data-productid="<%= product.id %>"
+                >
+                Send Message
+              </button>
+
+            </div>
+
+            <div class="fcf-credit" id="fcf-credit"></div>
+          </form>
+        </div>
+
+      </div>
         </div>
 
         <!--/span-->
@@ -141,7 +235,7 @@
           data-dismiss="modal"
           aria-hidden="true"
         >
-          ×
+
         </button>
         <h3 id="myModalLabel">Modal header</h3>
       </div>
@@ -156,7 +250,5 @@
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
   </body>
 </html>

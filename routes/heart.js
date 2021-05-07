@@ -4,7 +4,6 @@ const router = express.Router();
 module.exports = (db) => {
   router.post("/:id", (req, res) => {
     product_id = req.params.id;
-    console.log("To verify the id", product_id);
     const sql = `INSERT INTO favourites(user_id,product_id) Values($1,$2)`;
     values = [1, product_id];
     db.query(sql, values)

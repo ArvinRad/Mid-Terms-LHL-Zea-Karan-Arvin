@@ -1,41 +1,41 @@
-header {
-  header {
-    padding:  10px 15px;
-  /*  add overflow element to header to have it respect hight of elements  */
-    overflow: hidden;
-  }
+// header {
+//   header {
+//     padding:  10px 15px;
+//   /*  add overflow element to header to have it respect hight of elements  */
+//     overflow: hidden;
+//   }
 
-  nav {
-    display: flex;
+//   nav {
+//     display: flex;
 
-    float:  right;
-    margin-top: 30px;
-    margin-right: 30px;
+//     float:  right;
+//     margin-top: 30px;
+//     margin-right: 30px;
 
-  h1 {
-    float: left;
-  }
-  }
+//   h1 {
+//     float: left;
+//   }
+//   }
 
-  nav a {
-    color: black;
-    text-decoration: none;
-    margin: 0 0 0 20px;
-    padding: 0 0 5px;
+//   nav a {
+//     color: black;
+//     text-decoration: none;
+//     margin: 0 0 0 20px;
+//     padding: 0 0 5px;
 
-  }
+//   }
 
-  img {
-    display: flex;
-    align-self: left;
-  }
-}
+//   img {
+//     display: flex;
+//     align-self: left;
+//   }
+// }
 
-footer {
-  display: flex;
-  margin-top: 200px;
-  position: relative;
-  background-color: rgb(97, 96, 104);
-  width: 102.3%;
-  justify-content: center;
-}
+// footer {
+//   display: flex;
+//   margin-top: 200px;
+//   position: relative;
+//   background-color: rgb(97, 96, 104);
+//   width: 102.3%;
+//   justify-content: center;
+// }

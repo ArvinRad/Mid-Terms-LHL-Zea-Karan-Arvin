@@ -1,13 +1,17 @@
 const express = require("express");
 const router = express.Router();
-// const app        = express();
-// app.use(express.static("uploads"));
 
+
+router.use((req, res, next) => {
+  if(!req.session.user_id) {
+    res.redirect('/login');
+  }
+  next();
+});
 module.exports = (db) => {
    router.post("/", (req, res) => {
 
      const body = req.body;
-     //console.log(body)
 
     if (!req.files ||  Object.keys(body).length === 0 || Object.keys(req.files).length === 0 || body.product_name.length === 0
     || body.description.length === 0 || body.price.length === 0 || body.stock.length === 0 ) {

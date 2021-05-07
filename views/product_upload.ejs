@@ -1,66 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Product Upload</title>
+  <html lang="en">
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/responsive_design.css" type="text/css" />
+        <!-- Head -->
+        <%- include('partials/head') %>
 
+        <!-- Nav -->
+        <%- include('partials/nav') %>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+        <!-- Login-modal -->
+        <%- include('partials/login-modal') %>
 
-  <header>
-    <nav>
-      <div>
-        <h1>
-          <img src="logo.svg" />
-        </h1>
-      </div>
-      <div id="nav-a">
-        <a href="favorites.html">Favorites</a>
-        <a href="sell.html">Sell</a>
-        <a href="inbox.html">Inbox</a>
-      </div>
-    </nav>
-  </header>
+    <body>
+      <div class="row-fluid">
+        <div class="span6 offset3" >
+          <form action="/upload" method="POST" id="new-product-form" enctype="multipart/form-data" class="new-product center">
+            <h1>List new</h1>
+            <div class="new-product-form__field-wrapper">
+              <label for="new-product-form__name">Product Name</label>
+              <input placeholder="Product Name" class="span12" type="text" name="product_name" id="new-product-form__name">
+            </div>
 
-  <body>
-    <form action="/upload" method="POST" id="new-product-form" enctype="multipart/form-data" class="new-product">
+            <div class="new-product-form__field-wrapper ">
+              <label for="new-product-price">Price</label>
+              <input class="span12"type="number" name="price" placeholder="$" id="new-product-price">
+            </div>
 
-      <div class="new-product-form__field-wrapper">
-        <label for="new-product-form__name">Product Name</label>
-        <input placeholder="Product Name" type="text" name="product_name" id="new-product-form__name">
-      </div>
+              <div class="new-product-form__field-wrapper">
+                <label for="new-product-form__stock">Stock</label>
+                <input class="span12" placeholder="Stock" type="number" name="stock" id="new-product-form__stock">
+              </div>
 
-      <div class="new-product-form__field-wrapper">
-        <label for="new-product-price">Price</label>
-        <input type="number" name="price" placeholder="$" id="new-product-price">
-      </div>
+              <div class="new-product-form__field-wrapper">
+                <label for="new-product-description">Description</label>
+                <textarea class="span12" placeholder="Description" name="description" id="new-product-description" cols="30" rows="10"></textarea>
+              </div>
 
+                <label for="new-product-form__thumbnail">Upload Image</label>
+                <input class="span12" type="file" name="thumbnail" accept="image/*" id="new-product-form__thumbnail" />
 
-        <div class="new-product-form__field-wrapper">
-          <label for="new-product-form__stock">Stock</label>
-          <input placeholder="Stock" type="number" name="stock" id="new-product-form__stock">
+              <div style="margin-top: 25px" class="new-product-form__field-wrapper">
+                <button class="btn btn-primary" role="button">Create</button>
+                <a id="property-form__cancel" href="/views">Cancel</a>
+              </div>
+
+          </form>
         </div>
+      </div>
 
-        <div class="new-product-form__field-wrapper">
-          <label for="new-product-description">Description</label>
-          <textarea placeholder="Description" name="description" id="new-product-description" cols="30" rows="10"></textarea>
-        </div>
-
-          <label for="new-product-form__thumbnail">Thumbnail Image</label>
-           <input type="file" name="thumbnail" accept="image/*" id="new-product-form__thumbnail" />
-
-        <div class="new-product-form__field-wrapper">
-          <button type="submit">Create</button>
-          <a id="property-form__cancel" href="/views">Cancel</a>
-        </div>
-    </form>
-   </body>
-  </html>
-
+  </body>
+</html>

@@ -4,18 +4,18 @@ DROP TABLE IF EXISTS messages CASCADE;
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
   message VARCHAR(3000) NOT NULL,
-  sender_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-  thread_master_id INTEGER NOT NULL REFERENCES thread_masters(id) ON DELETE CASCADE,
+  sender_id INTEGER,
+  product_id INTEGER ,
+  thread_master_id INTEGER ,
   time TIMESTAMP
 );
 
 DROP TABLE IF EXISTS thread_masters CASCADE;
 CREATE TABLE thread_masters (
   id SERIAL PRIMARY KEY NOT NULL,
-  product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-  user1_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  user2_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  product_id INTEGER ,
+  user1_id INTEGER ,
+  user2_id INTEGER ,
   is_dealt Boolean DEFAULT true
 );
 
